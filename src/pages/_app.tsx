@@ -1,6 +1,17 @@
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <SidebarProvider>
+        <AppSidebar />
+        <SidebarInset>
+          <Component {...pageProps} />
+        </SidebarInset>
+      </SidebarProvider>
+    </>
+  );
 }
