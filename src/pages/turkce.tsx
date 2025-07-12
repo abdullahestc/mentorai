@@ -1,59 +1,261 @@
-﻿import { Button } from "@/components/ui/button";
+﻿"use client";
+
+import { useState, useMemo, useCallback } from "react";
+import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Progress } from "@/components/ui/progress";
+import { Separator } from "@/components/ui/separator";
+
+const topics = [
+  {
+    title: "Sözlükte Anlam",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4.  Kaynak"],
+  },
+  {
+    title: "Cümlede Anlam",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Paragrafta Anlam",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Ses Bilgisi",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Yazım Kuralları",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Noktalama İşaretleri",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Sözcüğün Yapısı",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Sözcük Türleri",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Fiiler",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Cümlenin Ögeleri",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Cümle Türleri",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Anlatım Bozukluğu",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+];
 
 export default function Turkce() {
+  const [checkedStates, setCheckedStates] = useState<{
+    [key: string]: boolean;
+  }>({});
+
+  const isChecked = useCallback(
+    (key: string) => checkedStates[key] || false,
+    [checkedStates]
+  );
+
+  const handleCheck = (key: string) => {
+    const isTurningOff = checkedStates[key] === true;
+
+    setCheckedStates((prev) => {
+      const updated = { ...prev, [key]: !prev[key] };
+
+      if (key.startsWith("konu-") && isTurningOff) {
+        const topicIdx = parseInt(key.split("-")[1]);
+        for (let i = 0; i < topics[topicIdx].tekrarlar.length; i++) {
+          updated[`tekrar-${topicIdx}-${i}`] = false;
+        }
+        for (let i = 0; i < topics[topicIdx].kaynaklar.length; i++) {
+          updated[`kaynak-${topicIdx}-${i}`] = false;
+        }
+      }
+
+      if (key.startsWith("tekrar-") && isTurningOff) {
+        const [, topicIdxStr, startIdxStr] = key.split("-");
+        const topicIdx = parseInt(topicIdxStr);
+        const startIdx = parseInt(startIdxStr);
+        const total = topics[topicIdx].tekrarlar.length;
+        for (let i = startIdx + 1; i < total; i++) {
+          updated[`tekrar-${topicIdx}-${i}`] = false;
+        }
+      }
+
+      if (key.startsWith("kaynak-") && isTurningOff) {
+        const [, topicIdxStr, startIdxStr] = key.split("-");
+        const topicIdx = parseInt(topicIdxStr);
+        const startIdx = parseInt(startIdxStr);
+        const total = topics[topicIdx].kaynaklar.length;
+        for (let i = startIdx + 1; i < total; i++) {
+          updated[`kaynak-${topicIdx}-${i}`] = false;
+        }
+      }
+
+      return updated;
+    });
+  };
+
+  const isEnabled = (
+    section: "tekrarlar" | "kaynaklar",
+    topicIdx: number,
+    idx: number
+  ) => {
+    const prefix = section === "tekrarlar" ? "tekrar" : "kaynak";
+    if (idx === 0) return isChecked(`konu-${topicIdx}`);
+    return isChecked(`${prefix}-${topicIdx}-${idx - 1}`);
+  };
+
+  const progress = useMemo(() => {
+    const total = topics.reduce((sum, topic) => {
+      let count = 0;
+      if (topic.konuCalismasi) count += 1;
+      if (topic.tekrarlar.length > 0) count += 1;
+      return sum + count;
+    }, 0);
+
+    const done = topics.reduce((sum, topic, idx) => {
+      let completed = 0;
+      if (topic.konuCalismasi && isChecked(`konu-${idx}`)) completed += 1;
+      if (topic.tekrarlar.length > 0 && isChecked(`tekrar-${idx}-0`))
+        completed += 1;
+      return sum + completed;
+    }, 0);
+
+    return total === 0 ? 0 : Math.round((done / total) * 100);
+  }, [checkedStates, isChecked]);
+
   return (
     <>
-      <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-        <div className="flex items-center gap-2 px-4">
+      <header className="flex flex-col w-full">
+        <div className="flex h-16 shrink-0 items-center gap-2 px-4 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
           <SidebarTrigger className="-ml-1" />
         </div>
+        <Separator className="h-px w-full" />
       </header>
 
-      {/* Başlık ve Buton Satırı */}
-      <div className="flex items-center justify-between px-5 mt-4">
-        <h3 className="text-3xl font-semibold tracking-tight">TÜRKÇE</h3>
-        <Button variant="outline">Kaydet</Button>
-      </div>
-
-      {/* Card */}
-      <Card className="w-full max-w-sm ml-5 mt-4">
-        <CardHeader>
-          <CardTitle>Sözlükte anlam</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form>
-            <div className="flex flex-col gap-6">
-              {[
-                "Konu Çalışması",
-                "1. Tekrar",
-                "2. Tekrar",
-                "3. Tekrar",
-                "4. Tekrar",
-                "5. Tekrar",
-                "1. Kaynak",
-                "2. Kaynak",
-                "3. Kaynak",
-                "4. Kaynak",
-              ].map((label, index) => (
-                <div className="flex items-center gap-2" key={index}>
-                  <Checkbox id={`checkbox-${index}`} />
-                  <Label htmlFor={`checkbox-${index}`}>{label}</Label>
-                </div>
-              ))}
+      <main className="container mx-auto px-4">
+        <Card className="w-full max-w-full mx-auto my-6">
+          <CardContent className="flex flex-col gap-4 px-6 py-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-4xl font-semibold tracking-tight">TÜRKÇE</h3>
+              <div className="flex items-center gap-4 w-1/2">
+                <Button variant="outline">Kaydet</Button>
+                <Progress
+                  value={progress}
+                  className="w-full transition-all duration-1000 ease-in-out delay-200"
+                />
+              </div>
             </div>
-          </form>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-w-full mx-auto">
+          {topics.map((topic, topicIdx) => (
+            <Card key={topicIdx} className="w-full">
+              <CardHeader>
+                <CardTitle>{topic.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form className="flex flex-col gap-6">
+                  {topic.konuCalismasi && (
+                    <div className="flex items-center gap-2">
+                      <Checkbox
+                        id={`konu-${topicIdx}`}
+                        checked={isChecked(`konu-${topicIdx}`)}
+                        onCheckedChange={() => handleCheck(`konu-${topicIdx}`)}
+                      />
+                      <Label htmlFor={`konu-${topicIdx}`}>Konu Çalışması</Label>
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-3">
+                      {topic.tekrarlar.map((label, i) => (
+                        <div
+                          className="flex items-center gap-2"
+                          key={`tekrar-${topicIdx}-${i}`}
+                        >
+                          <Checkbox
+                            id={`tekrar-${topicIdx}-${i}`}
+                            checked={isChecked(`tekrar-${topicIdx}-${i}`)}
+                            onCheckedChange={() =>
+                              handleCheck(`tekrar-${topicIdx}-${i}`)
+                            }
+                            disabled={!isEnabled("tekrarlar", topicIdx, i)}
+                          />
+                          <Label htmlFor={`tekrar-${topicIdx}-${i}`}>
+                            {label}
+                          </Label>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-col gap-3">
+                      {topic.kaynaklar.map((label, i) => (
+                        <div
+                          className="flex items-center gap-2"
+                          key={`kaynak-${topicIdx}-${i}`}
+                        >
+                          <Checkbox
+                            id={`kaynak-${topicIdx}-${i}`}
+                            checked={isChecked(`kaynak-${topicIdx}-${i}`)}
+                            onCheckedChange={() =>
+                              handleCheck(`kaynak-${topicIdx}-${i}`)
+                            }
+                            disabled={!isEnabled("kaynaklar", topicIdx, i)}
+                          />
+                          <Label htmlFor={`kaynak-${topicIdx}-${i}`}>
+                            {label}
+                          </Label>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </main>
     </>
   );
 }
