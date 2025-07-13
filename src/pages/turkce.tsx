@@ -165,12 +165,7 @@ export default function Turkce() {
 
   return (
     <>
-      <header className="flex flex-col w-full">
-        <div className="flex h-16 shrink-0 items-center gap-2 px-4 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-          <SidebarTrigger className="-ml-1" />
-        </div>
-        <Separator className="h-px w-full" />
-      </header>
+     
 
       <main className="container mx-auto px-4">
         <Card className="w-full max-w-full mx-auto my-6">
