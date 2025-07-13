@@ -9,80 +9,128 @@ import { Progress } from "@/components/ui/progress";
 
 const topics = [
   {
-    title: "Sözlükte Anlam",
+    title: "Yaşam Bilimi Biyoloji",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4.  Kaynak"],
   },
   {
-    title: "Cümlede Anlam",
+    title: "Hücre",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Paragrafta Anlam",
+    title: "Canlılar Dünyası",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Ses Bilgisi",
+    title: "Hücre Bölünmeleri",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Yazım Kuralları",
+    title: "Kalıtımın Genel İlkeleri",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Noktalama İşaretleri",
+    title: "Ekosistem Ekolojisi",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Sözcüğün Yapısı",
+    title: "Sinir Sistemi",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Sözcük Türleri",
+    title: "Endokrin Sistem",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Fiiler",
+    title: "Duyu Organları",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Cümlenin Ögeleri",
+    title: "Destek Ve Hareket Sistemi",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Cümle Türleri",
+    title: "Sindirim Sistemi",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Anlatım Bozukluğu",
+    title: "Dolaşım Ve Bağışıklık Sistemi",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Solunum Sistemi",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Üriner Sistem",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Üreme Sistemi Ve Embiryonik Gelişim",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Komünite Ve Popülasyon Ekolojisi",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Genden Proteine",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Canlılarda Enerji Dönüşümleri",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Bitki Biyolojisi",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Canlılar Ve Çevre",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
 ];
 
-export default function Turkce() {
+export default function Biyoloji() {
   const [checkedStates, setCheckedStates] = useState<{
     [key: string]: boolean;
   }>({});
@@ -167,7 +215,7 @@ export default function Turkce() {
         <Card className="w-full max-w-full mx-auto my-6">
           <CardContent className="flex flex-col gap-4 px-6 py-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-4xl font-semibold tracking-tight">TÜRKÇE</h3>
+              <h3 className="text-4xl font-semibold tracking-tight">BİYOLOJİ</h3>
               <div className="flex items-center gap-4 w-1/2">
                 <Button variant="outline">Kaydet</Button>
                 <Progress

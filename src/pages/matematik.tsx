@@ -9,80 +9,182 @@ import { Progress } from "@/components/ui/progress";
 
 const topics = [
   {
-    title: "Sözlükte Anlam",
+    title: "Temel Kavramlar",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4.  Kaynak"],
   },
   {
-    title: "Cümlede Anlam",
+    title: "Sayı Basamakları",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Paragrafta Anlam",
+    title: "Bölme ve Bölünebilme",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Ses Bilgisi",
+    title: "Ebob-Ekok",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Yazım Kuralları",
+    title: "Rasonel Sayılar",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Noktalama İşaretleri",
+    title: "Basit Eşitsizlikler",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Sözcüğün Yapısı",
+    title: "Mutlak Değer",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Sözcük Türleri",
+    title: "Üslü Sayılar",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Fiiler",
+    title: "Köklü Sayılar",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Cümlenin Ögeleri",
+    title: "Çarpanlara Ayırma",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Cümle Türleri",
+    title: "Oran-Orantı",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Anlatım Bozukluğu",
+    title: "Denklem Çözme",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Problemler",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Kümeler ve Kartezyen Çarpımı",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Mantık",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Sayma ve Olasılık",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Veri ve İstatistik",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Fonksiyonlar",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Polinomlar",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "2. Dereceden Denklemler",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Karmaşık Sayılar",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Parabol",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "2. Dereceden Eşitsizlikler",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Trigonometri",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Logaritma",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Diziler",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Limit ve Süreklilik",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Türev",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "İntegral",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
 ];
 
-export default function Turkce() {
+export default function Matematik() {
   const [checkedStates, setCheckedStates] = useState<{
     [key: string]: boolean;
   }>({});
@@ -167,7 +269,7 @@ export default function Turkce() {
         <Card className="w-full max-w-full mx-auto my-6">
           <CardContent className="flex flex-col gap-4 px-6 py-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-4xl font-semibold tracking-tight">TÜRKÇE</h3>
+              <h3 className="text-4xl font-semibold tracking-tight">MATEMATİK</h3>
               <div className="flex items-center gap-4 w-1/2">
                 <Button variant="outline">Kaydet</Button>
                 <Progress

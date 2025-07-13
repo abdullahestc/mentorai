@@ -39,23 +39,39 @@ const data = {
         },
         {
           title: "Matematik",
-          url: "#",
+          url: "matematik",
         },
         {
           title: "Geometri",
-          url: "#",
+          url: "geometri",
         },
         {
           title: "Fizik",
-          url: "#",
+          url: "fizik",
         },
         {
           title: "Kimya",
-          url: "#",
+          url: "kimya",
         },
         {
           title: "Biyoloji",
-          url: "#",
+          url: "biyoloji",
+        },
+        {
+          title: "Tarih",
+          url: "tarih",
+        },
+        {
+          title: "Coğrafya",
+          url: "cografya",
+        },
+        {
+          title: "Felsefe",
+          url: "felsefe",
+        },
+        {
+          title: "Din",
+          url: "din",
         },
       ],
     },

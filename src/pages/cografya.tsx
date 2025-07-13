@@ -9,80 +9,86 @@ import { Progress } from "@/components/ui/progress";
 
 const topics = [
   {
-    title: "Sözlükte Anlam",
+    title: "Doğa Ve İnsan",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4.  Kaynak"],
   },
   {
-    title: "Cümlede Anlam",
+    title: "Dünya’nın Şekli Ve Hareketleri",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Paragrafta Anlam",
+    title: "Coğrafi Konum",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Ses Bilgisi",
+    title: "Harita Bilgisi",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Yazım Kuralları",
+    title: "Atmosfer Ve Sıcaklık",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Noktalama İşaretleri",
+    title: "İklim Bilgisi",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Sözcüğün Yapısı",
+    title: "İç Ve Dış Kuvvetler",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Sözcük Türleri",
+    title: "Nüfus Ve Yerleşme",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Fiiler",
+    title: "Türkiye’Nin Yer Şekilleri",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Cümlenin Ögeleri",
+    title: "Ekonomik Faaliyetler",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Cümle Türleri",
+    title: "Bölgeler",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Anlatım Bozukluğu",
+    title: "Uluslararası Ulaşım Hatları",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Doğal Afetler",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
 ];
 
-export default function Turkce() {
+export default function Cografya() {
   const [checkedStates, setCheckedStates] = useState<{
     [key: string]: boolean;
   }>({});
@@ -167,7 +173,7 @@ export default function Turkce() {
         <Card className="w-full max-w-full mx-auto my-6">
           <CardContent className="flex flex-col gap-4 px-6 py-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-4xl font-semibold tracking-tight">TÜRKÇE</h3>
+              <h3 className="text-4xl font-semibold tracking-tight">COĞRAFYA</h3>
               <div className="flex items-center gap-4 w-1/2">
                 <Button variant="outline">Kaydet</Button>
                 <Progress

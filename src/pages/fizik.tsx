@@ -9,80 +9,164 @@ import { Progress } from "@/components/ui/progress";
 
 const topics = [
   {
-    title: "Sözlükte Anlam",
+    title: "Fizik Bilmine Giriş",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4.  Kaynak"],
   },
   {
-    title: "Cümlede Anlam",
+    title: "Madde Ve Özellikleri",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Paragrafta Anlam",
+    title: "Hareket Ve Kuvvet",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Ses Bilgisi",
+    title: "Enerji",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Yazım Kuralları",
+    title: "Isı Sıcaklık",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Noktalama İşaretleri",
+    title: "Elektrostatik",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Sözcüğün Yapısı",
+    title: "Elektrik Ve Manyetizma",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Sözcük Türleri",
+    title: "Basınç Ve Kaldırma Kuvveti",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Fiiler",
+    title: "Dalgalar",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Cümlenin Ögeleri",
+    title: "Optik",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Cümle Türleri",
+    title: "Vektörler",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Anlatım Bozukluğu",
+    title: "Bağıl Hareket",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Newton'In Hareket Yasaları",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Bir Boyutta Sabit İvmeli Hareket",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "İki Boyutta Hareket",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Enerji Ve Hareket II",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "İtme Ve Çizgisel Momentum",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Tork ve Denge",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Basit Makineler",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Elektrik Ve Manyetizma II",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Çembersel Hareket",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Basit Harmonik Hareket",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Dalga Mekaniği",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Atom Fiziğine Giriş Ve Radyoaktivite",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Modern Fizik",
+    konuCalismasi: true,
+    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
+    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
+  },
+  {
+    title: "Modern Fiziğin Teknolojideki Uygulamaları",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
 ];
 
-export default function Turkce() {
+export default function Fizik() {
   const [checkedStates, setCheckedStates] = useState<{
     [key: string]: boolean;
   }>({});
@@ -167,7 +251,7 @@ export default function Turkce() {
         <Card className="w-full max-w-full mx-auto my-6">
           <CardContent className="flex flex-col gap-4 px-6 py-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-4xl font-semibold tracking-tight">TÜRKÇE</h3>
+              <h3 className="text-4xl font-semibold tracking-tight">FİZİK</h3>
               <div className="flex items-center gap-4 w-1/2">
                 <Button variant="outline">Kaydet</Button>
                 <Progress

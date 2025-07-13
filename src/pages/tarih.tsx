@@ -9,80 +9,74 @@ import { Progress } from "@/components/ui/progress";
 
 const topics = [
   {
-    title: "Sözlükte Anlam",
+    title: "Tarih Ve Zaman",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4.  Kaynak"],
   },
   {
-    title: "Cümlede Anlam",
+    title: "İlk Ve Orta Çağlarda Türk Dünyası",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Paragrafta Anlam",
+    title: "İslam Medeniyetinin Doğuşu",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Ses Bilgisi",
+    title: "Türklerin İslamiyet’İ Kabulü Ve İlk Türk İslam Devletleri",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Yazım Kuralları",
+    title: "Beylikten Devlete Osmanlı",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Noktalama İşaretleri",
+    title: "Dünya Gücü Osmanlı",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Sözcüğün Yapısı",
+    title: "Değişim Çağında Avrupa Ve Osmanlı",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Sözcük Türleri",
+    title: "Uluslararası İlişkilerde Denge Stratejisi (1774-1914)",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Fiiler",
+    title: "20. Yüzyıl Başlarında Osmanlı Devleti Ve Dünya",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Cümlenin Ögeleri",
+    title: "Milli Mücadele",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
   {
-    title: "Cümle Türleri",
-    konuCalismasi: true,
-    tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
-    kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
-  },
-  {
-    title: "Anlatım Bozukluğu",
+    title: "Atatürkçülük Ve Türk İnkılabı",
     konuCalismasi: true,
     tekrarlar: ["1. Tekrar", "2. Tekrar", "3. Tekrar", "4. Tekrar"],
     kaynaklar: ["1. Kaynak", "2. Kaynak", "3. Kaynak", "4. Kaynak"],
   },
 ];
 
-export default function Turkce() {
+export default function Tarih() {
   const [checkedStates, setCheckedStates] = useState<{
     [key: string]: boolean;
   }>({});
@@ -167,7 +161,7 @@ export default function Turkce() {
         <Card className="w-full max-w-full mx-auto my-6">
           <CardContent className="flex flex-col gap-4 px-6 py-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-4xl font-semibold tracking-tight">TÜRKÇE</h3>
+              <h3 className="text-4xl font-semibold tracking-tight">TARİH</h3>
               <div className="flex items-center gap-4 w-1/2">
                 <Button variant="outline">Kaydet</Button>
                 <Progress
