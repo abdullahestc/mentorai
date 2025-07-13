@@ -29,7 +29,7 @@ const data = {
   navMain: [
     {
       title: "Dersler",
-      url: "#",
+      url: "dersler",
       icon: SquareTerminal,
       isActive: true,
       items: [
