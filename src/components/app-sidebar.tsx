@@ -143,13 +143,13 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
-      url: "#",
+      name: "AI Asistan",
+      url: "asistan",
       icon: Frame,
     },
     {
-      name: "Sales & Marketing",
-      url: "#",
+      name: "Deneme Takip",
+      url: "deneme",
       icon: PieChart,
     },
     {
