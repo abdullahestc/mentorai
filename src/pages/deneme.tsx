@@ -52,7 +52,6 @@ import { PopoverContent } from "@/components/ui/popover"
 import { format } from "date-fns"
 import { tr } from "date-fns/locale"
 import { Calendar } from "@/components/ui/calendar"
-import { cn } from "@/lib/utils"
 import {ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent} from "@/components/ui/chart"
 
 const tableData = [
@@ -109,7 +108,7 @@ const chartConfig = {
   AYT: { label: "AYT Net", color: "var(--chart-2)" },
 }
 
-export default function ChartAndTablePage() {
+export default function Deneme() {
   const [openDrawer, setOpenDrawer] = React.useState(false)
   const [drawerType, setDrawerType] = React.useState<"TYT" | "AYT" | null>(null)
   const [dialogOpen, setDialogOpen] = React.useState(false)
