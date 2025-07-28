@@ -1,17 +1,16 @@
 import * as React from "react";
 import {
-  BookOpen,
-  Bot,
   Frame,
-  Map,
   PieChart,
-  Settings2,
   SquareTerminal,
+  SquareCode,
+  ClockFading,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
 import { NavProjects } from "@/components/nav-projects";
 import { NavUser } from "@/components/nav-user";
+import { NavTools } from "@/components/nav-tools"
 import {
   Sidebar,
   SidebarContent,
@@ -19,6 +18,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import {Separator} from "@/components/ui/separator";
 
 const data = {
   user: {
@@ -26,6 +26,8 @@ const data = {
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
+
+  
   navMain: [
     {
       title: "Dersler",
@@ -75,71 +77,6 @@ const data = {
         },
       ],
     },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
   ],
   projects: [
     {
@@ -153,9 +90,14 @@ const data = {
       icon: PieChart,
     },
     {
-      name: "Travel",
-      url: "#",
-      icon: Map,
+      name: "Haftalık Program",
+      url: "program",
+      icon: SquareCode,
+    },
+    {
+      name: "Çalışma Vakti",
+      url: "pomodoro",
+      icon: ClockFading,
     },
   ],
 };
@@ -163,8 +105,23 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader></SidebarHeader>
+      <SidebarHeader className="flex items-center justify-center p-4">
+        <a href="/" className="block">
+          <img
+              src="/robokoclogo.png"
+              alt="Logo"
+              className="h-10 hidden group-[data-collapsed=false]/sidebar:block transition-all"
+          />
+          <img
+              src="/robokocico.svg"
+              alt="Logo Icon"
+              className="h-10 block group-[data-collapsed=false]/sidebar:hidden transition-all"
+          />
+        </a>
+        <Separator/>
+      </SidebarHeader>
       <SidebarContent>
+        <NavTools />
         <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />
       </SidebarContent>

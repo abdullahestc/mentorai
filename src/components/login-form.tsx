@@ -12,7 +12,6 @@ export function LoginForm({
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
             <Card className="overflow-hidden p-0">
-                {/* Kartın sabit yüksekliği olmalı ki dikey çizgi uzasın */}
                 <CardContent className="flex flex-col md:flex-row p-0 h-[400px]">
                     {/* Form */}
                     <div className="w-full md:w-1/2 p-6 md:p-8">
@@ -56,17 +55,15 @@ export function LoginForm({
                             </div>
                         </form>
                     </div>
-
-                    {/* Separator */}
+                    
                     <Separator
                         orientation="vertical"
                         className="hidden md:block h-full w-px bg-gray-300"
                     />
-
-                    {/* Görsel */}
+                    
                     <div className="relative hidden md:flex w-1/2 items-center justify-center p-4">
                         <img
-                            src="/robokoclogo.jpg"
+                            src="/robokoclogo.png"
                             alt="Image"
                             className="w-48 h-auto object-contain"
                         />
