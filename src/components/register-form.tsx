@@ -217,7 +217,7 @@ export function RegisterForm({
 
                             <ScrollArea className="h-[400px] w-full">
                                 <div className="space-y-6 w-full pr-5">
-                                    <Accordion type="multiple" defaultValue={["akademik", "netler"]}>
+                                    <Accordion type="multiple">
                                         {/* Akademik Durum */}
                                         <AccordionItem value="akademik">
                                             <AccordionTrigger className="text-base font-semibold">
