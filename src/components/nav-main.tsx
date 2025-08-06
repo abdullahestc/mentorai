@@ -52,7 +52,7 @@ export function NavMain({
                         tooltip={item.title}
                         onClick={() => {
                           if (item.title === "Dersler") {
-                            router.push("/dersler") // ✅ yalnızca Dersler için yönlendirme
+                            router.push("/dersler")
                           }
                         }}
                     >
