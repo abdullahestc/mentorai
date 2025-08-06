@@ -1,24 +1,37 @@
 ﻿"use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
+
+const topicVideoMap: { pattern: RegExp; url: string }[] = [
+    { pattern: /asal(?:\s*sayı(?:lar)?)?/i, url: "https://www.youtube.com/watch?v=F9mdf3x6FUg" },
+    { pattern: /\bebob\b/i, url: "https://www.youtube.com/watch?v=aAzGkC1mgDk" },
+    { pattern: /\bekok\b/i, url: "https://www.youtube.com/watch?v=aAzGkC1mgDk" },
+    { pattern: /türev/i, url: "https://www.youtube.com/watch?v=PAzv2FmiuU8" },
+    { pattern: /integral/i, url: "https://www.youtube.com/watch?v=GrA7cp1RYuA" },
+    { pattern: /üslü\s*sayı(?:lar)?/i, url: "https://www.youtube.com/watch?v=6vGJgiW5ZYc" },
+    { pattern: /çarpan(?:lara)?\s*ayırma/i, url: "https://www.youtube.com/watch?v=-JYKSqZcEaA" },
+];
+
 export default function Asistan() {
     const [question, setQuestion] = useState("");
     const [answer, setAnswer] = useState("");
     const [loading, setLoading] = useState(false);
+    const [youtubeLinks, setYoutubeLinks] = useState<{ title: string; url: string }[]>([]);
 
     const controllerRef = useRef<AbortController | null>(null);
     const messageHistoryRef = useRef<{ role: "user" | "assistant"; content: string }[]>([]);
 
-    const askQuestion = useCallback(async (initialPrompt?: string) => {
-        const query = initialPrompt || question;
+    async function askQuestion(prompt?: string) {
+        const query = prompt || question;
         if (!query) return;
 
         setAnswer("");
+        setYoutubeLinks([]);
         setLoading(true);
 
         messageHistoryRef.current.push({
@@ -45,7 +58,6 @@ export default function Asistan() {
 
             const reader = response.body?.getReader();
             const decoder = new TextDecoder("utf-8");
-
             if (!reader) throw new Error("Yanıt akışı başlatılamadı.");
 
             let done = false;
@@ -72,7 +84,7 @@ export default function Asistan() {
                             setAnswer((prev) => prev + content);
                         }
                     } catch {
-                        // JSON parse hatası yutuluyor
+                        
                     }
                 }
             }
@@ -81,18 +93,34 @@ export default function Asistan() {
                 role: "assistant",
                 content: resultText,
             });
+
+            const matched = topicVideoMap.filter(({ pattern }) =>
+                pattern.test(resultText.toLowerCase())
+            );
+
+            if (matched.length > 0) {
+                const links = matched.map(({ pattern, url }) => {
+                    const topic = pattern.toString().replace(/[\/\\^$.*+?()[\]{}]/g, "");
+                    return {
+                        title: `📺 ${topic[0].toUpperCase() + topic.slice(1)} Videosu`,
+                        url,
+                    };
+                });
+                setYoutubeLinks(links);
+            }
         } catch {
             setAnswer("Bir hata oluştu. Lütfen tekrar dene.");
         } finally {
             setLoading(false);
         }
-    }, [question]);
+    }
 
     useEffect(() => {
         askQuestion(
-            "Sen bir eğitim asistanısın. Sayfa açıldığında öğrencilere tüm derslerde (matematik, fizik, edebiyat, tarih, biyoloji, coğrafya vs.) yardımcı olacak şekilde yönlendirici bir mesaj ver. Hazırsan seni dinliyorum gibi sıcak bir giriş yap."
+            "Sen bir eğitim asistanısın. Sayfa açıldığında öğrencilere tüm derslerde (matematik, fizik, edebiyat, tarih, biyoloji, coğrafya vs.) yardımcı olacak şekilde yönlendirici bir mesaj ver. Hazırsan seni dinliyorum gibi sıcak bir giriş yap. Eğer kullanıcı bir konu hakkında video isterse, konuyla alakalı YouTube video bağlantıları da önerebilirsin."
         );
-    }, [askQuestion]);
+        
+    }, []);
 
     return (
         <main className="container mx-auto px-4 py-8">
@@ -111,11 +139,32 @@ export default function Asistan() {
                         {loading ? "Cevaplanıyor..." : "Sor"}
                     </Button>
                     {answer && (
-                        <Textarea
-                            value={answer}
-                            readOnly
-                            className="min-h-[200px] bg-muted resize-none"
-                        />
+                        <>
+                            <Textarea
+                                value={answer}
+                                readOnly
+                                className="min-h-[200px] bg-muted resize-none"
+                            />
+                            {youtubeLinks.length > 0 && (
+                                <div className="mt-4">
+                                    <h3 className="text-lg font-semibold">📚 Kaynaklar</h3>
+                                    <ul className="list-disc ml-4">
+                                        {youtubeLinks.map((link, i) => (
+                                            <li key={i}>
+                                                <a
+                                                    href={link.url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-blue-600 underline"
+                                                >
+                                                    {link.title}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </>
                     )}
                 </CardContent>
             </Card>

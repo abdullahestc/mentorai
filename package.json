@@ -35,7 +35,7 @@
     "next": "15.3.5",
     "openai": "^5.9.0",
     "react": "^19.0.0",
-    "react-day-picker": "^9.8.0",
+    "react-day-picker": "^9.8.1",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.61.1",
     "recharts": "^2.15.4",

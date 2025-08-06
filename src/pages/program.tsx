@@ -1,4 +1,4 @@
-﻿// app/program/page.tsx veya pages/program.tsx
+﻿
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
