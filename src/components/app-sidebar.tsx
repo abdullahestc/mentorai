@@ -33,7 +33,7 @@ const data = {
       title: "Dersler",
       url: "dersler",
       icon: SquareTerminal,
-      isActive: true,
+      isActive: false,
       items: [
         {
           title: "Türkçe",

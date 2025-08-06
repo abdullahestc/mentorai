@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 export default function App({ Component, pageProps }: AppProps) {
     const router = useRouter();
 
-    const noLayoutRoutes = ["/login"];
+    const noLayoutRoutes = ["/login","/register"];
 
     const isLayoutVisible = !noLayoutRoutes.includes(router.pathname);
   return (
