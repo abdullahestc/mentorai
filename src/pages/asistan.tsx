@@ -46,7 +46,7 @@ export default function Asistan() {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer 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`,
+                    Authorization: `Bearer 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`,
                 },
                 body: JSON.stringify({
                     model: "gpt-4o",
