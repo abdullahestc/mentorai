@@ -11,3 +11,20 @@ model GlobalProgress {
   id            Int  @id @default(1)
   checkedStates Json @default("{}")
 }
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+
+  profile   UserProfile?
+}
+
+model UserProfile {
+  userId        String @id // Hem Primary Key hem de User tablosuna Foreign Key
+  user          User   @relation(fields: [userId], references: [id])
+
+  formData      Json   @default("{}")
+}
