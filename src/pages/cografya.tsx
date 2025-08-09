@@ -1,4 +1,4 @@
-﻿import { CografyaForm } from "@/components/ui/cografya-form"
+﻿import { CografyaForm } from "@/components/cografya-form"
 
 export default function Cografya() {
   return (

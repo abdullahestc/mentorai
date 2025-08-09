@@ -1,4 +1,4 @@
-﻿import { FelsefeForm } from "@/components/ui/felsefe-form"
+﻿import { FelsefeForm } from "@/components/felsefe-form"
 
 export default function Felsefe() {
     return (

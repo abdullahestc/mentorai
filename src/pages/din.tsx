@@ -1,4 +1,4 @@
-﻿import { DinForm } from "@/components/ui/din-form"
+﻿import { DinForm } from "@/components/din-form"
 
 export default function Din() {
   return (

@@ -1,4 +1,4 @@
-﻿import { GeometriForm } from "@/components/ui/geometri-form"
+﻿import { GeometriForm } from "@/components/geometri-form"
 
 export default function Geometri() {
   return (

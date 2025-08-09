@@ -1,4 +1,4 @@
-﻿import TarihForm from "@/components/ui/tarih-form";
+﻿import TarihForm from "@/components/tarih-form";
 
 export default function TarihPage() {
   return (

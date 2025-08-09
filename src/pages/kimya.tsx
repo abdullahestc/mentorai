@@ -1,4 +1,4 @@
-﻿import { KimyaForm } from "@/components/ui/kimya-form"
+﻿import { KimyaForm } from "@/components/kimya-form"
 
 export default function Kimya() {
   return (

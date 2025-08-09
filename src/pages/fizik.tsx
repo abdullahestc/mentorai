@@ -1,4 +1,4 @@
-﻿import { FizikForm } from "@/components/ui/fizik-form"
+﻿import { FizikForm } from "@/components/fizik-form"
 
 export default function Fizik() {
   return (

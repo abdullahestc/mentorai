@@ -1,4 +1,4 @@
-﻿import { MatematikForm } from "@/components/ui/matematik-form";
+﻿import { MatematikForm } from "@/components/matematik-form";
 
 export default function Matematik() {
   return (

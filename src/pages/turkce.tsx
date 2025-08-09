@@ -1,4 +1,4 @@
-﻿import { TurkceForm } from "@/components/ui/turkce-form"
+﻿import { TurkceForm } from "@/components/turkce-form"
 
 export default function Turkce() {
   return (

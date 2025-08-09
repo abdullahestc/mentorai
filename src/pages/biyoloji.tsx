@@ -1,4 +1,4 @@
-﻿import { BiyolojiForm } from "@/components/ui/biyoloji-form"
+﻿import { BiyolojiForm } from "@/components/biyoloji-form"
 
 export default function Biyoloji() {
   return (
