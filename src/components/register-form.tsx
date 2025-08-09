@@ -217,8 +217,41 @@ export function RegisterForm({
 
                             <ScrollArea className="h-[400px] w-full">
                                 <div className="space-y-6 w-full pr-5">
-                                    <Accordion type="multiple">
+                                    <Accordion type="multiple" defaultValue={["kisisel"]}>
                                         {/* Akademik Durum */}
+                                        <AccordionItem value="kisisel">
+                                            <AccordionTrigger className="text-base font-semibold">
+                                                Kişisel Bilgiler
+                                            </AccordionTrigger>
+                                            <AccordionContent>
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                    <div className="grid gap-2 w-full">
+                                                        <Label htmlFor="firstName">Ad</Label>
+                                                        <Input id="firstName" name="firstName" placeholder="Ad" />
+                                                    </div>
+
+                                                    <div className="grid gap-2 w-full">
+                                                        <Label htmlFor="lastName">Soyad</Label>
+                                                        <Input id="lastName" name="lastName" placeholder="Soyad" />
+                                                    </div>
+
+                                                    <div className="grid gap-2 w-full md:col-span-2">
+                                                        <Label htmlFor="email">E-mail</Label>
+                                                        <Input id="email" name="email" type="email" placeholder="ornek@mail.com" />
+                                                    </div>
+
+                                                    <div className="grid gap-2 w-full">
+                                                        <Label htmlFor="password">Parola</Label>
+                                                        <Input id="password" name="password" type="password" placeholder="••••••••" />
+                                                    </div>
+
+                                                    <div className="grid gap-2 w-full">
+                                                        <Label htmlFor="passwordConfirm">Parola Onay</Label>
+                                                        <Input id="passwordConfirm" name="passwordConfirm" type="password" placeholder="••••••••" />
+                                                    </div>
+                                                </div>
+                                            </AccordionContent>
+                                        </AccordionItem>
                                         <AccordionItem value="akademik">
                                             <AccordionTrigger className="text-base font-semibold">
                                                 Akademik Durum
@@ -301,7 +334,7 @@ export function RegisterForm({
                                                                         }}
                                                                     />
                                                                 </div>
-                                                                
+
                                                                 <div className="col-span-2">
                                                                     <Button
                                                                         variant="destructive"
@@ -339,7 +372,7 @@ export function RegisterForm({
                                                                     id="ekNot"
                                                                     placeholder="Örn:84.52"
                                                                     value={""}
-                                                                   
+
                                                                     className="w-full"
                                                                 />
                                                             </div>
