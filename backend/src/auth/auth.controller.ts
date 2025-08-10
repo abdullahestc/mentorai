@@ -8,7 +8,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
-  register(@Body(new ValidationPipe()) registerData: any) {
+  register(@Body(new ValidationPipe()) registerData: RegisterDto) {
     return this.authService.register(registerData);
   }
 

@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -28,6 +28,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Switch } from "@/components/ui/switch";
 import Link from "next/link";
 import Image from "next/image";
+import api from "@/lib/api";
 
 const BOLUMLER = ["Sayısal", "Sözel", "EA", "Dil"] as const;
 const SINIFLAR = ["9", "10", "11", "12", "Mezun"] as const;
@@ -49,9 +50,15 @@ type MezunDeneyimi = { yil: string; siralama: number | string };
 type SaatAraligi = { baslangic: string; bitis: string };
 
 export function RegisterForm({
-                                 className,
-                                 ...props
-                             }: React.ComponentProps<"div">) {
+    className,
+    ...props
+}: React.ComponentProps<"div">) {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [error, setError] = useState("");
     // Temel durumlar
     const [bolum, setBolum] =
         useState<(typeof BOLUMLER)[number]>("Sayısal");
@@ -187,9 +194,20 @@ export function RegisterForm({
 
     const [dershaneVarMi, setDershaneVarMi] = useState(false);
 
-    const onSubmit = (e: React.FormEvent) => {
+    const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setError('');
+
+        if (password !== passwordConfirm) {
+            return setError("Parolalar eşleşmiyor.");
+        }
+
         const payload = {
+            firstName,
+            lastName,
+            email,
+            password,
+            passwordConfirm,
             bolum,
             sinif,
             okul: sinif !== "Mezun" ? okul : undefined,
@@ -219,8 +237,23 @@ export function RegisterForm({
             uykuBeslenme,
             geriCekenEtmen,
         };
-        console.log("Register payload:", payload);
-        alert("Kayıt formu gönderildi! (Konsolu kontrol et)");
+        try {
+            const response = await api.post("/auth/register", payload);
+            console.log("Kayıt başarılı:", response.data);
+            alert("Kayıt başarıyla tamamlandı! Lütfen giriş yapın.");
+            window.location.href = '/login';
+        } catch (err: any) {
+            console.error("Kayıt hatası:", err.response);
+            const errorMessageFromServer = err.response?.data?.message;
+            let displayError = "Kayıt sırasında bir hata oluştu.";
+            if (Array.isArray(errorMessageFromServer)) {
+                displayError = errorMessageFromServer.join(', ');
+            } else if (typeof errorMessageFromServer === 'string') {
+                displayError = errorMessageFromServer;
+            }
+
+            setError(displayError);
+        }
     };
 
     return (
@@ -246,30 +279,31 @@ export function RegisterForm({
                                                 Kişisel Bilgiler
                                             </AccordionTrigger>
                                             <AccordionContent>
+                                                {error && <p className="text-sm text-red-500 text-center mb-4">{error}</p>}
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                     <div className="grid gap-2 w-full">
                                                         <Label htmlFor="firstName">Ad</Label>
-                                                        <Input id="firstName" name="firstName" placeholder="Ad" />
+                                                        <Input id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Ad" required />
                                                     </div>
 
                                                     <div className="grid gap-2 w-full">
                                                         <Label htmlFor="lastName">Soyad</Label>
-                                                        <Input id="lastName" name="lastName" placeholder="Soyad" />
+                                                        <Input id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Soyad" required />
                                                     </div>
 
                                                     <div className="grid gap-2 w-full md:col-span-2">
                                                         <Label htmlFor="email">E-mail</Label>
-                                                        <Input id="email" name="email" type="email" placeholder="ornek@mail.com" />
+                                                        <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="ornek@mail.com" required />
                                                     </div>
 
                                                     <div className="grid gap-2 w-full">
                                                         <Label htmlFor="password">Parola</Label>
-                                                        <Input id="password" name="password" type="password" placeholder="••••••••" />
+                                                        <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required />
                                                     </div>
 
                                                     <div className="grid gap-2 w-full">
                                                         <Label htmlFor="passwordConfirm">Parola Onay</Label>
-                                                        <Input id="passwordConfirm" name="passwordConfirm" type="password" placeholder="••••••••" />
+                                                        <Input id="passwordConfirm" type="password" value={passwordConfirm} onChange={(e) => setPasswordConfirm(e.target.value)} placeholder="••••••••" required />
                                                     </div>
                                                 </div>
                                             </AccordionContent>

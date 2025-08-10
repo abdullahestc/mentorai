@@ -9,10 +9,10 @@ export class AuthService {
   constructor(
     private prisma: PrismaService,
     private jwtService: JwtService,
-  ) {}
+  ) { }
 
   async register(registerData: any) {
-    const { name, email, password, ...profilVerisi } = registerData;
+    const { firstName, lastName, email, password, passwordConfirm, ...profilVerisi } = registerData;
 
     const existingUser = await this.prisma.user.findUnique({ where: { email } });
     if (existingUser) {
@@ -21,21 +21,22 @@ export class AuthService {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    const fullName = `${firstName} ${lastName}`;
     const user = await this.prisma.user.create({
       data: {
-        name,
+        name: fullName,
         email,
         password: hashedPassword,
         profile: {
           create: {
-            formData: profilVerisi, 
+            formData: profilVerisi,
           },
         },
       },
     });
 
     const { password: _, ...result } = user;
-return result;
+    return result;
   }
 
   async login(loginDto: LoginDto) {
