@@ -26,6 +26,8 @@ import {
 } from "@/components/ui/accordion";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Switch } from "@/components/ui/switch";
+import Link from "next/link";
+import Image from "next/image";
 
 const BOLUMLER = ["Sayısal", "Sözel", "EA", "Dil"] as const;
 const SINIFLAR = ["9", "10", "11", "12", "Mezun"] as const;
@@ -51,17 +53,20 @@ export function RegisterForm({
                                  ...props
                              }: React.ComponentProps<"div">) {
     // Temel durumlar
-    const [bolum, setBolum] = useState<(typeof BOLUMLER)[number]>("Sayısal");
-    const [sinif, setSinif] = useState<(typeof SINIFLAR)[number]>("12");
+    const [bolum, setBolum] =
+        useState<(typeof BOLUMLER)[number]>("Sayısal");
+    const [sinif, setSinif] =
+        useState<(typeof SINIFLAR)[number]>("12");
     const [okul, setOkul] = useState<string>("");
     const [dershane, setDershane] = useState<string>("");
 
     // Mezun deneyi/sıralama (çoklu)
-    const [mezunDeneyimleri, setMezunDeneyimleri] = useState<MezunDeneyimi[]>([]);
+    const [mezunDeneyimleri, setMezunDeneyimleri] = useState<
+        MezunDeneyimi[]
+    >([]);
 
     // Özel ders (çoklu)
     const [ozelDersler, setOzelDersler] = useState<string[]>([]);
-
 
     // TYT / AYT / Hedef netler (dinamik)
     const [tytNetOrt, setTytNetOrt] = useState<NetSatiri[]>([
@@ -106,8 +111,12 @@ export function RegisterForm({
     const [hedefNetler, setHedefNetler] = useState<NetSatiri[]>([]);
 
     // Çalışma alışkanlıkları
-    const [ortCalismaSuresiSaat, setOrtCalismaSuresiSaat] = useState<number | string>("");
-    const [calismaSaatAraliklari, setCalismaSaatAraliklari] = useState<SaatAraligi[]>([]);
+    const [ortCalismaSuresiSaat, setOrtCalismaSuresiSaat] = useState<
+        number | string
+    >("");
+    const [calismaSaatAraliklari, setCalismaSaatAraliklari] = useState<
+        SaatAraligi[]
+    >([]);
     const [ozelKonularDurum, setOzelKonularDurum] = useState<string>("");
     const [denemeTakip, setDenemeTakip] = useState<boolean>(false);
     const [kaynaklar, setKaynaklar] = useState<string>("");
@@ -115,8 +124,12 @@ export function RegisterForm({
     // Öğrenme tercihleri
     const [ogrenmeStili, setOgrenmeStili] = useState<string[]>([]);
     const [dersBazliStrateji, setDersBazliStrateji] = useState<string>("");
-    const [calismaYontemi, setCalismaYontemi] = useState<"Konu" | "Soru" | "Dengeli">("Dengeli");
-    const [tekBasinaMi, setTekBasinaMi] = useState<"Tek başıma" | "Birileriyle">("Tek başıma");
+    const [calismaYontemi, setCalismaYontemi] = useState<
+        "Konu" | "Soru" | "Dengeli"
+    >("Dengeli");
+    const [tekBasinaMi, setTekBasinaMi] = useState<
+        "Tek başıma" | "Birileriyle"
+    >("Tek başıma");
 
     // Motivasyon & yaşam tarzı
     const [sinavKaygi, setSinavKaygi] = useState<string>("");
@@ -126,15 +139,23 @@ export function RegisterForm({
     const [geriCekenEtmen, setGeriCekenEtmen] = useState<string>("");
 
     // helpers
-    const toggleSet = (arr: string[], setArr: (v: string[]) => void, v: string) => {
+    const toggleSet = (
+        arr: string[],
+        setArr: (v: string[]) => void,
+        v: string
+    ) => {
         setArr(arr.includes(v) ? arr.filter((x) => x !== v) : [...arr, v]);
     };
 
-    const addRow = <T,>(arr: T[], setArr: (v: T[]) => void, row: T) => setArr([...arr, row]);
-    const removeRow = <T,>(arr: T[], setArr: (v: T[]) => void, idx: number) =>
-        setArr(arr.filter((_, i) => i !== idx));
+    const addRow = <T,>(arr: T[], setArr: (v: T[]) => void, row: T) =>
+        setArr([...arr, row]);
+    const removeRow = <T,>(
+        arr: T[],
+        setArr: (v: T[]) => void,
+        idx: number
+    ) => setArr(arr.filter((_, i) => i !== idx));
 
-    // bölüm değişince AYT defaultlarını sıfırdan vermek istersen:
+    // bölüm değişince AYT defaultlarını sıfırdan ver
     React.useEffect(() => {
         setAytNetOrt(
             bolum === "Sayısal"
@@ -163,7 +184,9 @@ export function RegisterForm({
                         : [{ ders: "Yabancı Dil", net: 0 }]
         );
     }, [bolum]);
+
     const [dershaneVarMi, setDershaneVarMi] = useState(false);
+
     const onSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const payload = {
@@ -197,7 +220,6 @@ export function RegisterForm({
             geriCekenEtmen,
         };
         console.log("Register payload:", payload);
-        // await fetch("/api/register", { method: "POST", body: JSON.stringify(payload) })
         alert("Kayıt formu gönderildi! (Konsolu kontrol et)");
     };
 
@@ -218,7 +240,7 @@ export function RegisterForm({
                             <ScrollArea className="h-[400px] w-full">
                                 <div className="space-y-6 w-full pr-5">
                                     <Accordion type="multiple" defaultValue={["kisisel"]}>
-                                        {/* Akademik Durum */}
+                                        {/* Kişisel Bilgiler */}
                                         <AccordionItem value="kisisel">
                                             <AccordionTrigger className="text-base font-semibold">
                                                 Kişisel Bilgiler
@@ -252,6 +274,8 @@ export function RegisterForm({
                                                 </div>
                                             </AccordionContent>
                                         </AccordionItem>
+
+                                        {/* Akademik Durum */}
                                         <AccordionItem value="akademik">
                                             <AccordionTrigger className="text-base font-semibold">
                                                 Akademik Durum
@@ -260,13 +284,18 @@ export function RegisterForm({
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                     <div className="grid gap-2 w-full">
                                                         <Label>Bölüm</Label>
-                                                        <Select value={bolum} onValueChange={(v: any) => setBolum(v)}>
+                                                        <Select
+                                                            value={bolum}
+                                                            onValueChange={(v) => setBolum(v as (typeof BOLUMLER)[number])}
+                                                        >
                                                             <SelectTrigger className="w-full">
                                                                 <SelectValue placeholder="Seçiniz" />
                                                             </SelectTrigger>
                                                             <SelectContent>
                                                                 {BOLUMLER.map((b) => (
-                                                                    <SelectItem key={b} value={b}>{b}</SelectItem>
+                                                                    <SelectItem key={b} value={b}>
+                                                                        {b}
+                                                                    </SelectItem>
                                                                 ))}
                                                             </SelectContent>
                                                         </Select>
@@ -274,16 +303,42 @@ export function RegisterForm({
 
                                                     <div className="grid gap-2 w-full">
                                                         <Label>Sınıf</Label>
-                                                        <Select value={sinif} onValueChange={(v: any) => setSinif(v)}>
+                                                        <Select
+                                                            value={sinif}
+                                                            onValueChange={(v) => setSinif(v as (typeof SINIFLAR)[number])}
+                                                        >
                                                             <SelectTrigger className="w-full">
                                                                 <SelectValue placeholder="Seçiniz" />
                                                             </SelectTrigger>
                                                             <SelectContent>
                                                                 {SINIFLAR.map((s) => (
-                                                                    <SelectItem key={s} value={s}>{s}</SelectItem>
+                                                                    <SelectItem key={s} value={s}>
+                                                                        {s}
+                                                                    </SelectItem>
                                                                 ))}
                                                             </SelectContent>
                                                         </Select>
+                                                    </div>
+
+                                                    {/* Okul & Dershane alanları -> setter'lar aktif kullanılıyor */}
+                                                    {sinif !== "Mezun" && (
+                                                        <div className="grid gap-2 w-full md:col-span-2">
+                                                            <Label>Okul</Label>
+                                                            <Input
+                                                                placeholder="Okul adı"
+                                                                value={okul}
+                                                                onChange={(e) => setOkul(e.target.value)}
+                                                            />
+                                                        </div>
+                                                    )}
+
+                                                    <div className="grid gap-2 w-full md:col-span-2">
+                                                        <Label>Dershane</Label>
+                                                        <Input
+                                                            placeholder="Dershane (varsa)"
+                                                            value={dershane}
+                                                            onChange={(e) => setDershane(e.target.value)}
+                                                        />
                                                     </div>
 
                                                     <div className="flex items-center gap-2 md:col-span-2">
@@ -295,7 +350,6 @@ export function RegisterForm({
                                                         <Label htmlFor="dershane">Dershaneye gidiyorum</Label>
                                                     </div>
                                                 </div>
-
 
                                                 {sinif === "Mezun" && (
                                                     <div className="mt-4 space-y-3">
@@ -341,7 +395,11 @@ export function RegisterForm({
                                                                         type="button"
                                                                         className="w-full"
                                                                         onClick={() =>
-                                                                            removeRow(mezunDeneyimleri, setMezunDeneyimleri, idx)
+                                                                            removeRow(
+                                                                                mezunDeneyimleri,
+                                                                                setMezunDeneyimleri,
+                                                                                idx
+                                                                            )
                                                                         }
                                                                     >
                                                                         Sil
@@ -350,8 +408,8 @@ export function RegisterForm({
                                                             </div>
                                                         ))}
 
-                                                        {/* Yeni deneyim ekleme kısmı */}
-                                                        <div className="flex items-center gap-3 p-1">
+                                                        {/* Yeni deneyim ekleme + OBP */}
+                                                        <div className="flex flex-col md:flex-row md:items-center gap-3 p-1">
                                                             <Button
                                                                 type="button"
                                                                 variant="secondary"
@@ -371,15 +429,16 @@ export function RegisterForm({
                                                                 <Input
                                                                     id="ekNot"
                                                                     placeholder="Örn:84.52"
-                                                                    value={""}
-
+                                                                    value={obp}
+                                                                    onChange={(e) =>
+                                                                        setObp(e.target.value === "" ? "" : Number(e.target.value))
+                                                                    }
                                                                     className="w-full"
                                                                 />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 )}
-
                                             </AccordionContent>
                                         </AccordionItem>
 
@@ -393,10 +452,15 @@ export function RegisterForm({
                                                     <Label>Hangi derslerden özel ders alıyorsun?</Label>
                                                     <div className="grid grid-cols-2 md:grid-cols-2 gap-2 mt-1">
                                                         {OZEL_DERS_LISTESI.map((d) => (
-                                                            <label key={d} className="flex items-center gap-2 rounded-xl border p-2 cursor-pointer">
+                                                            <label
+                                                                key={d}
+                                                                className="flex items-center gap-2 rounded-xl border p-2 cursor-pointer"
+                                                            >
                                                                 <Checkbox
                                                                     checked={ozelDersler.includes(d)}
-                                                                    onCheckedChange={() => toggleSet(ozelDersler, setOzelDersler, d)}
+                                                                    onCheckedChange={() =>
+                                                                        toggleSet(ozelDersler, setOzelDersler, d)
+                                                                    }
                                                                 />
                                                                 <span className="text-sm">{d}</span>
                                                             </label>
@@ -440,7 +504,6 @@ export function RegisterForm({
                                                             </div>
                                                         </div>
                                                     ))}
-                                                   
                                                 </div>
 
                                                 <Separator className="my-4" />
@@ -478,7 +541,6 @@ export function RegisterForm({
                                                                     }}
                                                                 />
                                                             </div>
-                                                            
                                                         </div>
                                                     ))}
                                                 </div>
@@ -490,7 +552,6 @@ export function RegisterForm({
                                                 Hedefler
                                             </AccordionTrigger>
                                             <AccordionContent>
-                                                
                                                 {/* OBP ve hedefler */}
                                                 <div className="grid gap-2 p-1">
                                                     <Label>Hedef Okul</Label>
@@ -511,7 +572,11 @@ export function RegisterForm({
                                                 </div>
                                                 <div className="grid gap-2 mt-3 p-1">
                                                     <Label>Bölümü seçme sebebi</Label>
-                                                    <Textarea placeholder="Neden bu bölümü istiyorsun?" value={bolumuSecmeSebebi} onChange={(e) => setBolumuSecmeSebebi(e.target.value)} />
+                                                    <Textarea
+                                                        placeholder="Neden bu bölümü istiyorsun?"
+                                                        value={bolumuSecmeSebebi}
+                                                        onChange={(e) => setBolumuSecmeSebebi(e.target.value)}
+                                                    />
                                                 </div>
 
                                                 <div className="grid gap-2 mt-3 p-1">
@@ -521,7 +586,11 @@ export function RegisterForm({
                                                         min={1}
                                                         placeholder="Örn: 15000"
                                                         value={hedefSiralama}
-                                                        onChange={(e) => setHedefSiralama(e.target.value === "" ? "" : Number(e.target.value))}
+                                                        onChange={(e) =>
+                                                            setHedefSiralama(
+                                                                e.target.value === "" ? "" : Number(e.target.value)
+                                                            )
+                                                        }
                                                     />
                                                 </div>
 
@@ -559,13 +628,29 @@ export function RegisterForm({
                                                                 />
                                                             </div>
                                                             <div className="col-span-2">
-                                                                <Button type="button" variant="destructive" className="w-full" onClick={() => removeRow(hedefNetler, setHedefNetler, idx)}>
+                                                                <Button
+                                                                    type="button"
+                                                                    variant="destructive"
+                                                                    className="w-full"
+                                                                    onClick={() =>
+                                                                        removeRow(hedefNetler, setHedefNetler, idx)
+                                                                    }
+                                                                >
                                                                     Sil
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     ))}
-                                                    <Button type="button" variant="secondary" onClick={() => addRow(hedefNetler, setHedefNetler, { ders: "", net: "" })}>
+                                                    <Button
+                                                        type="button"
+                                                        variant="secondary"
+                                                        onClick={() =>
+                                                            addRow(hedefNetler, setHedefNetler, {
+                                                                ders: "",
+                                                                net: "",
+                                                            })
+                                                        }
+                                                    >
                                                         + Hedef Net Ekle
                                                     </Button>
                                                 </div>
@@ -588,7 +673,11 @@ export function RegisterForm({
                                                             step="0.5"
                                                             placeholder="Örn: 3.5"
                                                             value={ortCalismaSuresiSaat}
-                                                            onChange={(e) => setOrtCalismaSuresiSaat(e.target.value === "" ? "" : Number(e.target.value))}
+                                                            onChange={(e) =>
+                                                                setOrtCalismaSuresiSaat(
+                                                                    e.target.value === "" ? "" : Number(e.target.value)
+                                                                )
+                                                            }
                                                         />
                                                     </div>
                                                 </div>
@@ -622,7 +711,18 @@ export function RegisterForm({
                                                                 />
                                                             </div>
                                                             <div className="col-span-2">
-                                                                <Button type="button" variant="destructive" className="w-full" onClick={() => removeRow(calismaSaatAraliklari, setCalismaSaatAraliklari, idx)}>
+                                                                <Button
+                                                                    type="button"
+                                                                    variant="destructive"
+                                                                    className="w-full"
+                                                                    onClick={() =>
+                                                                        removeRow(
+                                                                            calismaSaatAraliklari,
+                                                                            setCalismaSaatAraliklari,
+                                                                            idx
+                                                                        )
+                                                                    }
+                                                                >
                                                                     Sil
                                                                 </Button>
                                                             </div>
@@ -631,14 +731,21 @@ export function RegisterForm({
                                                     <Button
                                                         type="button"
                                                         variant="secondary"
-                                                        onClick={() => addRow(calismaSaatAraliklari, setCalismaSaatAraliklari, { baslangic: "", bitis: "" })}
+                                                        onClick={() =>
+                                                            addRow(calismaSaatAraliklari, setCalismaSaatAraliklari, {
+                                                                baslangic: "",
+                                                                bitis: "",
+                                                            })
+                                                        }
                                                     >
                                                         + Aralık Ekle
                                                     </Button>
                                                 </div>
                                                 <Separator className="my-4" />
                                                 <div className="grid gap-2 mt-4">
-                                                    <Label>Paragraf / Problem / Geometri gibi özel konularda durumun</Label>
+                                                    <Label>
+                                                        Paragraf / Problem / Geometri gibi özel konularda durumun
+                                                    </Label>
                                                     <RadioGroup
                                                         value={ozelKonularDurum}
                                                         onValueChange={setOzelKonularDurum}
@@ -657,17 +764,28 @@ export function RegisterForm({
                                                             <Label htmlFor="kotu">Kötü</Label>
                                                         </div>
                                                     </RadioGroup>
-                                                    
                                                 </div>
                                                 <Separator className="my-4" />
                                                 <div className="flex items-center gap-3 mt-3">
-                                                    <Switch checked={denemeTakip} onCheckedChange={setDenemeTakip} />
-                                                    <Label className="!m-0">Deneme sonuçlarını düzenli takip ediyor musun?</Label>
+                                                    <Switch
+                                                        checked={denemeTakip}
+                                                        onCheckedChange={setDenemeTakip}
+                                                    />
+                                                    <Label className="!m-0">
+                                                        Deneme sonuçlarını düzenli takip ediyor musun?
+                                                    </Label>
                                                 </div>
                                                 <Separator className="my-4" />
                                                 <div className="grid gap-2 mt-3 p-1">
-                                                    <Label>Hangi kaynakları kullanıyorsun? (Yayınevleri, platformlar, dijital araçlar vs.)</Label>
-                                                    <Textarea placeholder="Örn: 3D TYT Matematik, Palme Biyoloji, Kunduz, Notion..." value={kaynaklar} onChange={(e) => setKaynaklar(e.target.value)} />
+                                                    <Label>
+                                                        Hangi kaynakları kullanıyorsun? (Yayınevleri, platformlar,
+                                                        dijital araçlar vs.)
+                                                    </Label>
+                                                    <Textarea
+                                                        placeholder="Örn: 3D TYT Matematik, Palme Biyoloji, Kunduz, Notion..."
+                                                        value={kaynaklar}
+                                                        onChange={(e) => setKaynaklar(e.target.value)}
+                                                    />
                                                 </div>
                                             </AccordionContent>
                                         </AccordionItem>
@@ -681,26 +799,49 @@ export function RegisterForm({
                                                 <div className="grid gap-2">
                                                     <Label>En iyi nasıl öğreniyorsun?</Label>
                                                     <div className="grid grid-cols-2 md:grid-cols-2 gap-2 mt-1">
-                                                        {["Video", "Not çıkarma", "Soru çözerek", "Anlatarak"].map((opt) => (
-                                                            <label key={opt} className="flex items-center gap-2 border rounded-xl p-2 cursor-pointer">
-                                                                <Checkbox
-                                                                    checked={ogrenmeStili.includes(opt)}
-                                                                    onCheckedChange={() => toggleSet(ogrenmeStili, setOgrenmeStili, opt)}
-                                                                />
-                                                                <span className="text-sm">{opt}</span>
-                                                            </label>
-                                                        ))}
+                                                        {["Video", "Not çıkarma", "Soru çözerek", "Anlatarak"].map(
+                                                            (opt) => (
+                                                                <label
+                                                                    key={opt}
+                                                                    className="flex items-center gap-2 border rounded-xl p-2 cursor-pointer"
+                                                                >
+                                                                    <Checkbox
+                                                                        checked={ogrenmeStili.includes(opt)}
+                                                                        onCheckedChange={() =>
+                                                                            toggleSet(ogrenmeStili, setOgrenmeStili, opt)
+                                                                        }
+                                                                    />
+                                                                    <span className="text-sm">{opt}</span>
+                                                                </label>
+                                                            )
+                                                        )}
                                                     </div>
                                                 </div>
                                                 <Separator className="my-4" />
                                                 <div className="grid gap-2 mt-3 p-1">
-                                                    <Label>Her ders için ayrı bir stratejin var mı?</Label>
-                                                    <Textarea placeholder="Örn: Paragraf için süreli çözüm, matematik için konu+deneme..." value={dersBazliStrateji} onChange={(e) => setDersBazliStrateji(e.target.value)} />
+                                                    <Label>
+                                                        Her ders için ayrı bir stratejin var mı?
+                                                    </Label>
+                                                    <Textarea
+                                                        placeholder="Örn: Paragraf için süreli çözüm, matematik için konu+deneme..."
+                                                        value={dersBazliStrateji}
+                                                        onChange={(e) => setDersBazliStrateji(e.target.value)}
+                                                    />
                                                 </div>
                                                 <Separator className="my-4" />
                                                 <div className="grid gap-2 mt-3">
-                                                    <Label>Konu çalışması mı soru çözümü mü daha ağırlıklı gidiyor?</Label>
-                                                    <RadioGroup value={calismaYontemi} onValueChange={(v: any) => setCalismaYontemi(v)} className="flex flex-wrap gap-4">
+                                                    <Label>
+                                                        Konu çalışması mı soru çözümü mü daha ağırlıklı gidiyor?
+                                                    </Label>
+                                                    <RadioGroup
+                                                        value={calismaYontemi}
+                                                        onValueChange={(v) =>
+                                                            setCalismaYontemi(
+                                                                v as "Konu" | "Soru" | "Dengeli"
+                                                            )
+                                                        }
+                                                        className="flex flex-wrap gap-4"
+                                                    >
                                                         {["Konu", "Soru", "Dengeli"].map((opt) => (
                                                             <div key={opt} className="flex items-center space-x-2">
                                                                 <RadioGroupItem id={`cy_${opt}`} value={opt} />
@@ -711,8 +852,18 @@ export function RegisterForm({
                                                 </div>
                                                 <Separator className="my-4" />
                                                 <div className="grid gap-2 mt-3">
-                                                    <Label>Tek başına mı daha verimli çalışıyorsun, birileriyle mi?</Label>
-                                                    <RadioGroup value={tekBasinaMi} onValueChange={(v: any) => setTekBasinaMi(v)} className="flex flex-wrap gap-4">
+                                                    <Label>
+                                                        Tek başına mı daha verimli çalışıyorsun, birileriyle mi?
+                                                    </Label>
+                                                    <RadioGroup
+                                                        value={tekBasinaMi}
+                                                        onValueChange={(v) =>
+                                                            setTekBasinaMi(
+                                                                v as "Tek başıma" | "Birileriyle"
+                                                            )
+                                                        }
+                                                        className="flex flex-wrap gap-4"
+                                                    >
                                                         {["Tek başıma", "Birileriyle"].map((opt) => (
                                                             <div key={opt} className="flex items-center space-x-2">
                                                                 <RadioGroupItem id={`tb_${opt}`} value={opt} />
@@ -732,27 +883,44 @@ export function RegisterForm({
                                             <AccordionContent>
                                                 <div className="grid gap-2 p-1">
                                                     <Label>Sınavla ilgili en büyük korkun veya kaygın ne?</Label>
-                                                    <Textarea value={sinavKaygi} onChange={(e) => setSinavKaygi(e.target.value)} />
+                                                    <Textarea
+                                                        value={sinavKaygi}
+                                                        onChange={(e) => setSinavKaygi(e.target.value)}
+                                                    />
                                                 </div>
                                                 <Separator className="my-4" />
                                                 <div className="grid gap-2 mt-3 p-1">
                                                     <Label>Motivasyonun düştüğünde ne yapıyorsun?</Label>
-                                                    <Textarea value={motivasyonDusunce} onChange={(e) => setMotivasyonDusunce(e.target.value)} />
+                                                    <Textarea
+                                                        value={motivasyonDusunce}
+                                                        onChange={(e) => setMotivasyonDusunce(e.target.value)}
+                                                    />
                                                 </div>
                                                 <Separator className="my-4" />
                                                 <div className="grid gap-2 mt-3 p-1">
-                                                    <Label>Sosyal destek alıyor musun? (Aile, öğretmen, arkadaş)</Label>
-                                                    <Textarea value={sosyalDestek} onChange={(e) => setSosyalDestek(e.target.value)} />
+                                                    <Label>
+                                                        Sosyal destek alıyor musun? (Aile, öğretmen, arkadaş)
+                                                    </Label>
+                                                    <Textarea
+                                                        value={sosyalDestek}
+                                                        onChange={(e) => setSosyalDestek(e.target.value)}
+                                                    />
                                                 </div>
                                                 <Separator className="my-4" />
                                                 <div className="grid gap-2 mt-3 p-1">
                                                     <Label>Uyku ve beslenme düzenin nasıl?</Label>
-                                                    <Textarea value={uykuBeslenme} onChange={(e) => setUykuBeslenme(e.target.value)} />
+                                                    <Textarea
+                                                        value={uykuBeslenme}
+                                                        onChange={(e) => setUykuBeslenme(e.target.value)}
+                                                    />
                                                 </div>
                                                 <Separator className="my-4" />
                                                 <div className="grid gap-2 mt-3 p-1">
                                                     <Label>Sence en çok ne seni geriye çekiyor?</Label>
-                                                    <Textarea value={geriCekenEtmen} onChange={(e) => setGeriCekenEtmen(e.target.value)} />
+                                                    <Textarea
+                                                        value={geriCekenEtmen}
+                                                        onChange={(e) => setGeriCekenEtmen(e.target.value)}
+                                                    />
                                                 </div>
                                             </AccordionContent>
                                         </AccordionItem>
@@ -761,12 +929,14 @@ export function RegisterForm({
                             </ScrollArea>
 
                             <div className="mt-4 sticky bottom-0 bg-white p-4 border-t w-full">
-                                <Button type="submit" className="w-full">Kaydı Tamamla</Button>
+                                <Button type="submit" className="w-full">
+                                    Kaydı Tamamla
+                                </Button>
                                 <div className="text-center text-sm mt-2">
                                     Zaten hesabın var mı?{" "}
-                                    <a href="/login" className="underline underline-offset-4">
+                                    <Link href="/login" className="underline underline-offset-4">
                                         Giriş yap
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </form>
@@ -780,9 +950,11 @@ export function RegisterForm({
 
                     {/* Sağ: Görsel */}
                     <div className="relative hidden md:flex w-1/2 items-center justify-center p-4">
-                        <img
+                        <Image
                             src="/robokoclogo.png"
                             alt="Image"
+                            width={192}
+                            height={192}
                             className="w-48 h-auto object-contain"
                         />
                     </div>

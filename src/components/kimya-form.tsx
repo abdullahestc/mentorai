@@ -72,7 +72,7 @@ export function KimyaForm() {
         const total = topics.reduce((sum, topic) => sum + (topic.konuCalismasi ? 1 : 0) + (topic.tekrarlar.length > 0 ? 1 : 0), 0);
         const done = topics.reduce((sum, topic, idx) => sum + ((topic.konuCalismasi && isChecked(`konu-${idx}`)) ? 1 : 0) + ((topic.tekrarlar.length > 0 && isChecked(`tekrar-${idx}-0`)) ? 1 : 0), 0);
         return total === 0 ? 0 : Math.round((done / total) * 100);
-    }, [checkedStates, isChecked]);
+    }, [isChecked]);
 
     return (
         <main className="container mx-auto px-4">

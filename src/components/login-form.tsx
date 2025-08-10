@@ -4,6 +4,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
+import Link from "next/link"
+import Image from "next/image"
 
 export function LoginForm({
                               className,
@@ -33,12 +35,12 @@ export function LoginForm({
                             <div className="grid gap-3">
                                 <div className="flex items-center">
                                     <Label htmlFor="password">Parola</Label>
-                                    <a
+                                    <Link
                                         href="#"
                                         className="ml-auto text-sm underline-offset-2 hover:underline"
                                     >
                                         Parola mı unuttum
-                                    </a>
+                                    </Link>
                                 </div>
                                 <Input id="password" type="password" required />
                             </div>
@@ -49,22 +51,24 @@ export function LoginForm({
 
                             <div className="text-center text-sm">
                                 Hesabınız yok mu? Hemen{" "}
-                                <a href="/register" className="underline underline-offset-4">
+                                <Link href="/register" className="underline underline-offset-4">
                                     Oluşturalım
-                                </a>
+                                </Link>
                             </div>
                         </form>
                     </div>
-                    
+
                     <Separator
                         orientation="vertical"
                         className="hidden md:block h-full w-px bg-gray-300"
                     />
-                    
+
                     <div className="relative hidden md:flex w-1/2 items-center justify-center p-4">
-                        <img
+                        <Image
                             src="/robokoclogo.png"
                             alt="Image"
+                            width={192}
+                            height={192}
                             className="w-48 h-auto object-contain"
                         />
                     </div>
@@ -76,5 +80,5 @@ export function LoginForm({
                 <a href="#">Gizlilik Politikamızı</a> görebilirsiniz.
             </div>
         </div>
-    );
+    )
 }

@@ -73,7 +73,7 @@ export function FelsefeForm() {
             return sum + completed;
         }, 0);
         return total === 0 ? 0 : Math.round((done / total) * 100);
-    }, [checkedStates, isChecked]);
+    }, [isChecked]);
 
     return (
         <main className="container mx-auto px-4">
