@@ -1,8 +1,7 @@
 ﻿"use client";
 
 import * as React from "react";
-import { useMemo } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useMemo } from "react";
 import {
     Card,
     CardHeader,
@@ -10,6 +9,7 @@ import {
     CardContent,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
     AreaChart,
     Area,
@@ -26,15 +26,15 @@ const trTick = (d: number | Date) =>
 
 function ColumnBlock({
                          chartTitle,
-                         initialData,
-                         buttonHref,
+                         data,
+                         onAdd,
                      }: {
     chartTitle: string;
-    initialData: ChartPoint[];
-    buttonHref: string;
+    data: ChartPoint[];
+    onAdd: (point: ChartPoint) => void;
 }) {
-    const router = useRouter();
-    const data = initialData;
+    const [netValue, setNetValue] = useState("");
+    const [dateValue, setDateValue] = useState("");
 
     const chartData = useMemo(
         () => data.map((p) => ({ ...p, date: +p.date })),
@@ -43,6 +43,17 @@ function ColumnBlock({
 
     const denemeSayisi = data.length;
     const maxNet = data.length ? Math.max(...data.map((d) => d.net)) : 0;
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!netValue || !dateValue) return;
+        onAdd({
+            date: new Date(dateValue),
+            net: parseFloat(netValue),
+        });
+        setNetValue("");
+        setDateValue("");
+    };
 
     return (
         <div className="flex min-h-0 flex-col gap-6">
@@ -53,7 +64,10 @@ function ColumnBlock({
                 <CardContent className="pt-0">
                     <div className="h-72 w-full">
                         <ResponsiveContainer width="100%" height="100%">
-                            <AreaChart data={chartData} margin={{ top: 10, right: 16, left: 0, bottom: 0 }}>
+                            <AreaChart
+                                data={chartData}
+                                margin={{ top: 10, right: 16, left: 0, bottom: 0 }}
+                            >
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis
                                     dataKey="date"
@@ -102,38 +116,57 @@ function ColumnBlock({
                 </CardContent>
             </Card>
 
-            <Button
-                className="h-12 text-base w-full"
-                onClick={() => router.push(buttonHref)}
-            >
-                Deneme Ekle
-            </Button>
+            {/* Form */}
+            <Card>
+                <CardHeader className="pb-2 text-center">
+                    <CardTitle>Yeni Deneme Ekle</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                        <Input
+                            type="date"
+                            value={dateValue}
+                            onChange={(e) => setDateValue(e.target.value)}
+                        />
+                        <Input
+                            type="number"
+                            step="0.1"
+                            placeholder="Net"
+                            value={netValue}
+                            onChange={(e) => setNetValue(e.target.value)}
+                        />
+                        <Button type="submit" className="w-full">
+                            Ekle
+                        </Button>
+                    </form>
+                </CardContent>
+            </Card>
         </div>
     );
 }
 
-const dataSol: ChartPoint[] = [
-    { date: new Date(2025, 0, 4), net: 62 },
-    { date: new Date(2025, 0, 12), net: 66 },
-    { date: new Date(2025, 1, 5), net: 71 },
-    { date: new Date(2025, 1, 22), net: 73 },
-    { date: new Date(2025, 2, 3), net: 75 },
-    { date: new Date(2025, 2, 27), net: 78 },
-    { date: new Date(2025, 3, 15), net: 80 },
-    { date: new Date(2025, 3, 18), net: 112.5 },
-];
-
-const dataSag: ChartPoint[] = [
-    { date: new Date(2025, 0, 6), net: 45 },
-    { date: new Date(2025, 0, 28), net: 49 },
-    { date: new Date(2025, 1, 8), net: 52 },
-    { date: new Date(2025, 1, 25), net: 56 },
-    { date: new Date(2025, 2, 14), net: 58 },
-    { date: new Date(2025, 3, 2), net: 61 },
-    { date: new Date(2025, 3, 29), net: 63 },
-];
-
 export default function Deneme() {
+    const [dataSol, setDataSol] = useState<ChartPoint[]>([
+        { date: new Date(2025, 0, 4), net: 62 },
+        { date: new Date(2025, 0, 12), net: 66 },
+        { date: new Date(2025, 1, 5), net: 71 },
+        { date: new Date(2025, 1, 22), net: 73 },
+        { date: new Date(2025, 2, 3), net: 75 },
+        { date: new Date(2025, 2, 27), net: 78 },
+        { date: new Date(2025, 3, 15), net: 80 },
+        { date: new Date(2025, 3, 18), net: 112.5 },
+    ]);
+
+    const [dataSag, setDataSag] = useState<ChartPoint[]>([
+        { date: new Date(2025, 0, 6), net: 45 },
+        { date: new Date(2025, 0, 28), net: 49 },
+        { date: new Date(2025, 1, 8), net: 52 },
+        { date: new Date(2025, 1, 25), net: 56 },
+        { date: new Date(2025, 2, 14), net: 58 },
+        { date: new Date(2025, 3, 2), net: 61 },
+        { date: new Date(2025, 3, 29), net: 63 },
+    ]);
+
     return (
         <main className="w-full overflow-hidden">
             <div className="mx-auto max-w-8xl h-full p-4">
@@ -141,17 +174,15 @@ export default function Deneme() {
                     <div className="flex-1 min-h-0 overflow-auto">
                         <ColumnBlock
                             chartTitle="TYT Net Grafiği"
-                            initialData={dataSol}
-                            buttonHref="/denemetyt"
+                            data={dataSol}
+                            onAdd={(point) => setDataSol((prev) => [...prev, point])}
                         />
                     </div>
-
-                   
                     <div className="flex-1 min-h-0 overflow-auto">
                         <ColumnBlock
                             chartTitle="AYT Net Grafiği"
-                            initialData={dataSag}
-                            buttonHref="/denemeayt"
+                            data={dataSag}
+                            onAdd={(point) => setDataSag((prev) => [...prev, point])}
                         />
                     </div>
                 </div>
